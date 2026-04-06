@@ -30,6 +30,16 @@ import FindId_Doctor from './doctorpage/logIn/FindId_Doctor';
 import FindPassword_Doctor from './doctorpage/logIn/FindPassword_Doctor';
 import Signup_Doctor from './doctorpage/logIn/Signup_Doctor';
 
+const basename = (() => {
+  const publicUrl = process.env.PUBLIC_URL;
+
+  if (!publicUrl) {
+    return '';
+  }
+
+  return new URL(publicUrl, window.location.origin).pathname.replace(/\/$/, '');
+})();
+
 
 function MainPageWrapper() {
   if (isMobile()) {
@@ -48,7 +58,7 @@ function StartPageWrapper() {
 export default function App() {
   return (
 
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<StartPageWrapper />} />
         <Route path="/mainpage" element={<MainPageWrapper />} />
