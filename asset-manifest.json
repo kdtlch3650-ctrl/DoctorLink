@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/DoctorLink/static/css/main.7424070f.css",
+    "main.js": "/DoctorLink/static/js/main.95f6825a.js",
+    "static/js/453.110e8a90.chunk.js": "/DoctorLink/static/js/453.110e8a90.chunk.js",
+    "static/media/startPage_img.png": "/DoctorLink/static/media/startPage_img.16873b320ca2e1635217.png",
+    "index.html": "/DoctorLink/index.html",
+    "main.7424070f.css.map": "/DoctorLink/static/css/main.7424070f.css.map",
+    "main.95f6825a.js.map": "/DoctorLink/static/js/main.95f6825a.js.map",
+    "453.110e8a90.chunk.js.map": "/DoctorLink/static/js/453.110e8a90.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7424070f.css",
+    "static/js/main.95f6825a.js"
+  ]
+}
