@@ -4,6 +4,18 @@ import MainHeader from "../mainHeader/MainHeader";
 import hospitalInfoList from "./data/hospitalInfo";
 import "./HospitalDetail.css";
 
+function getHospitalImageSrc(imgurl) {
+    if (!imgurl) {
+        return "";
+    }
+
+    if (/^(https?:)?\/\//.test(imgurl)) {
+        return imgurl;
+    }
+
+    return `${process.env.PUBLIC_URL}${imgurl}`;
+}
+
 export default function HospitalDetail() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -278,7 +290,7 @@ export default function HospitalDetail() {
                             <div className="hospital-detail-hero">
                                 <img
                                     className="hospital-detail-hero-img"
-                                    src={hospital.imgurl}
+                                    src={getHospitalImageSrc(hospital.imgurl)}
                                     alt={`${hospital.title} 이미지`}
                                     onError={(e) => {
                                         e.currentTarget.src =

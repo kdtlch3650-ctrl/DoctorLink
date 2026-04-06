@@ -9,6 +9,18 @@ import Dropdown from './Dropdown';
 import { timeOptions, holidayOptions, openStatusOptions } from './data/dropdownOptions';
 import hospitalInfoList from './data/hospitalInfo';
 
+function getHospitalImageSrc(imgurl) {
+    if (!imgurl) {
+        return "";
+    }
+
+    if (/^(https?:)?\/\//.test(imgurl)) {
+        return imgurl;
+    }
+
+    return `${process.env.PUBLIC_URL}${imgurl}`;
+}
+
 export default function HospitalSearchPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -209,7 +221,7 @@ export default function HospitalSearchPage() {
                                 </div>
                                 <div className="hospital-card-thumb">
                                     <img
-                                        src={hospitalInfo.imgurl}
+                                        src={getHospitalImageSrc(hospitalInfo.imgurl)}
                                         alt={`${hospitalInfo.title} 이미지`}
                                         onError={(e) => {
                                             e.currentTarget.src =
