@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/DoctorLink/static/css/main.7424070f.css",
-    "main.js": "/DoctorLink/static/js/main.c597dd6d.js",
+    "main.css": "/DoctorLink/static/css/main.72a4f97e.css",
+    "main.js": "/DoctorLink/static/js/main.3c097284.js",
     "static/js/453.110e8a90.chunk.js": "/DoctorLink/static/js/453.110e8a90.chunk.js",
     "static/media/startPage_img.png": "/DoctorLink/static/media/startPage_img.16873b320ca2e1635217.png",
     "index.html": "/DoctorLink/index.html",
-    "main.7424070f.css.map": "/DoctorLink/static/css/main.7424070f.css.map",
-    "main.c597dd6d.js.map": "/DoctorLink/static/js/main.c597dd6d.js.map",
+    "main.72a4f97e.css.map": "/DoctorLink/static/css/main.72a4f97e.css.map",
+    "main.3c097284.js.map": "/DoctorLink/static/js/main.3c097284.js.map",
     "453.110e8a90.chunk.js.map": "/DoctorLink/static/js/453.110e8a90.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7424070f.css",
-    "static/js/main.c597dd6d.js"
+    "static/css/main.72a4f97e.css",
+    "static/js/main.3c097284.js"
   ]
 }
