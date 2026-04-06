@@ -69,6 +69,16 @@
     background-color: #1d4ed8;
 }
 
+.auth-subbutton {
+    margin-top: 10px;
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.auth-subbutton:hover {
+    background-color: #cbd5e1;
+}
+
 .auth-link {
     margin-top: 15px;
     text-align: center;

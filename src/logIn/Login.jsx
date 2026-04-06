@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import googleLogo from "../assets/logos/google.png";
@@ -12,9 +12,8 @@ export default function Login() {
     const [showTerms, setShowTerms] = useState(false);
 
     const navigate = useNavigate();
-    const { setLoginTry } = useAuth();
+    const { setLoginTry, setUserInfo } = useAuth();
 
-    /* ✅ 새로고침 시 로그인 유지 */
     useEffect(() => {
         const loginUser = localStorage.getItem("doctorlink_login");
         if (loginUser) {
@@ -25,45 +24,52 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const savedUser = JSON.parse(
-            localStorage.getItem("doctorlink_user")
-        );
+        const savedUser = JSON.parse(localStorage.getItem("doctorlink_user"));
 
         if (!savedUser) {
             alert("가입된 계정이 없습니다.");
             return;
         }
 
-        if (
-            savedUser.email !== email ||
-            savedUser.password !== password
-        ) {
+        if (savedUser.email !== email || savedUser.password !== password) {
             alert("이메일 또는 비밀번호가 올바르지 않습니다.");
             return;
         }
 
-        /* ✅ 로그인 성공 → 사용자 정보 저장 */
-        localStorage.setItem(
-            "doctorlink_login",
-            JSON.stringify({
-                email: savedUser.email,
-                name: savedUser.name,
-                role: savedUser.role, // USER / DOCTOR / DOCTOR_PENDING
-            })
-        );
+        const loginSession = {
+            email: savedUser.email,
+            name: savedUser.name,
+            role: savedUser.role,
+        };
 
+        localStorage.setItem("doctorlink_login", JSON.stringify(loginSession));
         setLoginTry(true);
+        setUserInfo(loginSession);
         alert("로그인 성공");
-        navigate("/mainpage"); // 홈으로 이동
+        navigate("/mainpage");
+    };
+
+    const handleGuestLogin = () => {
+        const guestSession = {
+            email: null,
+            name: "게스트",
+            role: "GUEST",
+            isGuest: true,
+        };
+
+        localStorage.setItem("doctorlink_login", JSON.stringify(guestSession));
+        localStorage.removeItem("doctorlink_first_login");
+        setLoginTry(true);
+        setUserInfo(guestSession);
+        navigate("/mainpage");
     };
 
     const handleSNS = (type) => {
-        alert(`${type} 로그인 (연동 예정)`);
+        alert(`${type} 로그인은 아직 준비 중입니다.`);
     };
 
     return (
         <div className="auth-container">
-            {/* ✅ 기존 로고 유지 (홈 이동 정상) */}
             <div className="header_main_text">
                 <Link to="/" className="header__logo-link">
                     <h1 className="header_1 header__logo" style={{ fontSize: "2.5rem" }}>
@@ -92,8 +98,14 @@ export default function Login() {
                 />
 
                 <button className="auth-button">로그인</button>
+                <button
+                    type="button"
+                    className="auth-button auth-subbutton"
+                    onClick={handleGuestLogin}
+                >
+                    게스트로 둘러보기
+                </button>
 
-                {/* SNS 로그인 유지 */}
                 <div className="sns-box">
                     <div className="sns-divider">
                         <span>간편 로그인</span>
@@ -115,7 +127,6 @@ export default function Login() {
                     </div>
                 </div>
 
-                {/* 기존 링크 유지 */}
                 <div className="auth-link">
                     계정이 없으신가요? <Link to="/signup">회원가입</Link>
                 </div>
@@ -124,7 +135,6 @@ export default function Login() {
                     <Link to="/find-password">비밀번호 찾기</Link>
                 </div>
 
-                {/* 이용약관 유지 */}
                 <div className="terms-mini">
                     <span className="terms-link" onClick={() => setShowTerms(true)}>
                         이용약관
@@ -136,13 +146,14 @@ export default function Login() {
                         <div className="terms-box">
                             <h4>이용약관</h4>
                             <p>
-                                본 서비스는 학습용 목업 페이지이며 실제 계정 정보는 저장되지 않습니다.
+                                본 서비스는 학습용 목업 페이지이며 실제 계정 정보는 서버에 저장되지 않습니다.
                             </p>
                             <button
+                                type="button"
                                 className="terms-btn"
                                 onClick={() => setShowTerms(false)}
                             >
-                                동의
+                                확인
                             </button>
                         </div>
                     </div>
